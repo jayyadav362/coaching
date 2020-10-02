@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment View</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+{% if request.method == 'POST' %}
+    <div class="card">
+    <div class="card-body">
+        {{ form }}
+    </div>
+    </div>
+{% else %}
+
+    <div class="container mt-3">
+        <div class="col-lg-12">
+            <table class="table table-bordered">
+                <tr>
+                    <th rowspan="3">
+                        <img src="{{ student.photo.url }}" width="200px" alt="">
+                    </th>
+                    <th>{{ student.first_name }} {{ student.last_name }}</th>
+                </tr>
+                <tr>
+                    <td>{{ student.father_name }}</td>
+                </tr>
+                <tr>
+                    <td>{{ student.contact }}</td>
+                </tr>
+                    <td>{{ student.user_id.email }}</td>
+                    <td>{{ student.address }}{{ student.city }},{{ student.state }}</td>
+                </tr>
+            </table>
+            <div class="card">
+                <div class="card-body">
+                    <a href="{% url 'profile_student_edit' student.std_id %}" class="btn btn-info">Edit {{ student.first_name }}'s Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+</body>
+</html>

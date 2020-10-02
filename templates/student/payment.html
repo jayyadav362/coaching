@@ -1,0 +1,42 @@
+{% extends 'student/base_student.html' %}
+
+
+{% block content %}
+
+    <div class="col-lg-9">
+     <div class="col-lg-12">
+        <h2 class="text-muted float-left h4">Manage payments ({{ pay|length }})</h2>
+    </div>
+    <table class="table">
+        <tr>
+            <th>#Pay_id</th>
+            <th>Month</th>
+            <th>Amount</th>
+            <th>Course</th>
+            <th>Due</th>
+            <th>Status</th>
+        </tr>
+        {% for p in pay %}
+            <tr>
+            <td>{{ p.pay_id  }}</td>
+            <td>
+                {{ p.p_month|date:"D, d-m-Y" }}
+
+            </td>
+            <td>{{p.p_amount  }}</td>
+            <td>{{p.p_course  }}</td>
+            <td>{{p.p_due  }}</td>
+            <td>
+                {% if p.p_status == "0" %}
+                    <a href="{% url 'update_payments' p.pay_id %}" class="btn btn-primary btn-sm">Pay Now</a>
+                {% else %}
+                    <a href="" class="btn btn-warning small btn-sm disabled">Request Send</a>
+                {% endif %}
+            </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    </div>
+
+{% endblock %}

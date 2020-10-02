@@ -1,0 +1,38 @@
+{% extends 'student/base_student.html' %}
+
+{% block content %}
+    <div class="col-lg-9">
+    <div class="row">
+        <div class="col-lg-4 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{% url 'add_course' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="id_course_name">Course Name</label>
+                                <select name="course_name" id="id_course_name">
+                                      <option value="" selected>---------</option>
+                                    {% for foo in course %}
+
+                                            <option value="{{ foo.id }}">{{ foo.course_name }}</option>
+
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            {% for f in addcourse %}
+                                <div class="form-group">
+                                {{ f.label_tag }}
+                                {{ f }}
+                                {{ f.errors }}
+                                </div>
+                            {% endfor %}
+
+                        <input type="submit" class="btn btn-info btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'student/base_student.html' %}
+{% block content %}
+    <div class="col-lg-9">
+        {% if std_course < 1 %}
+            <div class="alert text-white bg-info">
+                <h2 class="h6">Not have any course </h2>
+                <a href="{% url 'add_course' %}" class="btn btn-light float-right btn-sm mt-n4">add course</a>
+            </div>
+        {% endif %}
+        {% if user.0.status == '3' %}
+            <div class="alert py-5 text-white bg-danger text-center">
+                <h2 class="h3">Your account is suspended</h2>
+                <p>Please contact your study center for reactivation</p>
+            </div>
+        {% elif user.0.status == '0' %}
+            <div class="alert py-5 bg-warning text-dark text-center">
+                <h2>Wait you are in queue... </h2>
+                <p>We will approve your account asap...</p>
+            </div>
+        {% else %}
+            <div class="jumbotron bg-white shadow-sm">
+                <p class="lead">Hello {{ user.0.first_name }}, <br>
+                    <small>This is your Panel here you can manage your payment and add or remove your courses. your can
+                        ask Question.. Join Quiz Challenges. and also track your performance. soon we will Add online
+                        Examination.
+                    </small>
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="{% url 'payments' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card border-0 bg-white shadow-sm text-center text-uppercase text-primary">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Payments</h2>
+                                        {% if due != 0 %}
+                                            <small class="text-muted">Rs. {{ due }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="{% url 'student_course' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card border-0 bg-white shadow-sm text-center text-uppercase text-success">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Courses</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <a href="{% url 'full_profile' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card border-0 bg-white shadow-sm text-center text-uppercase text-warning">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Profile</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <a href="{% url 'student_course' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card bg-white border-0  shadow-sm text-center text-uppercase text-center text-info">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4"><i class="material-icons">settings</i>
+                                            Setting</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="{% url 'payments' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card border-0 bg-white shadow-sm text-center text-uppercase text-primary">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Q & A</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="{% url 'student_course' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card border-0 bg-white shadow-sm text-center text-uppercase text-success">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Quiz</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <a href="{% url 'student_course' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card border-0 bg-white shadow-sm text-center text-uppercase text-warning">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Score</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mt-3">
+                            <a href="{% url 'student_course' %}" class="nav-link m-0 p-0 text-black">
+                                <div class="card bg-white border-0  shadow-sm text-center text-uppercase text-center text-info">
+                                    <div class="card-body">
+                                        <h2 class="font-weight-bolder h4">Notice</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

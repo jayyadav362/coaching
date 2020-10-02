@@ -1,0 +1,46 @@
+{% extends 'student/base_student.html' %}
+
+{% block content %}
+    <div class="col-lg-9">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="float-left">Update profile</h2>
+                <a href="{% url 'update_profile' %}" class="btn btn-info btn-sm float-right">Update Profile</a>
+                <table class="table">
+                    <tr>
+                        <th>Full Name</th>
+                        <td>{{ user.0.first_name }} {{ user.0.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Father Name</th>
+                        <td>{{ user.0.father_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth</th>
+                        <td>{{ user.0.date_of_birth }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contact</th>
+                        <td>{{ user.0.contact }}</td>
+                    </tr>
+                    <tr>
+                        <th>email</th>
+                        <td>{{ userdata.0.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>address</th>
+                        <td>{{ user.0.address }},{{ user.0.city }} ({{ user.0.state }})</td>
+                    </tr>
+                    <tr>
+                        <th>gender</th>
+                        <td>{{ user.0.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th>degree</th>
+                        <td>{{ user.0.degree }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

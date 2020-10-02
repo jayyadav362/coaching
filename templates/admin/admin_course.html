@@ -1,0 +1,106 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row mb-3">
+                    <div class="col-lg-10">
+                        <h2 class="lead">Manage Course</h2>
+                    </div>
+                    <div class="col-lg-2">
+                        <form action="">
+                            <select class="form-control">
+                                <option>Active</option>
+                                <option>Courseless</option>
+                                <option>Pending</option>
+                                <option>Deactived</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>#id</th>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Fees</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {% for x in course %}
+       <tr>
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.course_name }}</td>
+                        <td>{{ x.course_duration }}</td>
+                        <td>{{ x.course_fees }}</td>
+                         <td>
+                            <a href="" class="btn btn-danger btn-sm">Deactive</a>
+                            <a href="#view{{ x.id }}" class="btn btn-info btn-sm" data-toggle="modal">View Students</a>
+                            <a href="#edit{{ x.id }}" class="btn btn-success btn-sm" data-toggle="modal">Edit</a>
+
+<!-- Modal -->
+            <div class="modal fade" id="edit{{ x.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit {{ x.course_name }}'s Records</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="" method="">
+              {{ courseform.as_p }}
+              <input type="submit" class="btn btn-block btn-success">
+          </form>
+      </div>
+   </div>
+  </div>
+</div>
+
+<!--student list modal-->
+<div class="modal fade" id="view{{ x.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ x.course_name }} course student Records</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <table class="table">
+             <tr>
+                 <th>#id</th>
+                 <th>Name</th>
+                 <th>Father</th>
+                 <th>Contact</th>
+             </tr>
+
+             {% for foo in student %}
+            {% if foo.course_name.id == x.id %}
+             <tr>
+                    <td>{{ foo.user_id }}</td>
+                    <td>{{ foo.course_name }}</td>
+                    <td>{{ foo.user_id.email }}</td>
+             </tr>
+
+            {% endif %}
+             {% endfor %}
+
+         </table>
+      </div>
+   </div>
+  </div>
+</div>
+
+                         </td>
+                       </tr>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

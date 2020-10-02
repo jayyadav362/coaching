@@ -1,0 +1,67 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row mb-3">
+                    <div class="col-lg-10">
+                        <h2 class="lead">Manage Student</h2>
+                    </div>
+                    <div class="col-lg-2">
+                        <form action="">
+                            <select class="form-control">
+                                <option>Active</option>
+                                <option>Courseless</option>
+                                <option>Pending</option>
+                                <option>Deactived</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>father</th>
+                        <th>address</th>
+                        <th>Action</th>
+                        <th>status</th>
+                    </tr>
+                    {% for x in user %}
+                        <tr>
+                        <td>{{ x.std_id }}</td>
+                        <td>{{ x.first_name }} {{ x.last_name }}</td>
+                        <td>{{ x.contact }}</td>
+                        <td>{{ x.father_name }}</td>
+                        <td>{{ x.address }} {{ x.city }} ({{ x.state }})</td>
+                        <td>
+                            <a href="" class="btn btn-danger btn-sm">Deactive</a>
+                            <a href="" onclick="window.open('{% url 'profile_view' x.user_id %}','pop1','width=900,height=400,top=200,left=200')" class="btn btn-primary btn-sm">View Profile</a>
+                            <a href="" onclick="window.open('{% url 'payment_view' x.user_id %}','pop2','width=900,height=400,top=200,left=200')" class="btn btn-secondary btn-sm">payments</a>
+                            {% if x.status == '1' %}
+                                <a href="{% url 'approve' x.std_id %}" class="btn btn-danger btn-sm">TakeOut</a>
+                            {% elif x.status == '3' %}
+                                <a href="{% url 'approve' x.std_id %}" class="btn btn-success btn-sm">Active</a>
+                            {% elif x.status == '0' %}
+                                <a href="{% url 'approve' x.std_id %}" class="btn btn-info btn-sm">Approve</a>
+                            {% endif %}
+                            </td>
+                        <td>
+                            {% if x.status == '0' %}
+                                <span class="badge badge-danger">Pending</span>
+                            {% elif x.status == '1' %}
+                                <span class="badge badge-success">Active</span>
+                            {% elif x.status == '2' %}
+                                <span class="badge badge-warning">Courseless</span>
+                            {% elif x.status == '3' %}
+                                <span class="badge badge-dark">Deactive</span>
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

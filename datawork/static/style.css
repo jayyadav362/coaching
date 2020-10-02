@@ -1,0 +1,14 @@
+:root {
+    --main-color:#2980b9!important;
+    --main-color1:#0a3d62!important;
+    --main-font:'Quicksand', sans-serif!important;
+}
+.bg-main{
+    background-color: var(--main-color);
+}
+.bg-main1{
+    background-color: var(--main-color1);
+}
+.main-font{
+    font-family: var(--main-font);
+}

@@ -1,0 +1,32 @@
+{% extends 'student/base_student.html' %}
+
+
+{% block content %}
+    <div class="col-lg-9">
+    <div class="col-lg-12">
+        <h2 class="text-muted float-left h4">Manage Course ({{ stdcourse|length }})</h2>
+    </div>
+    <table class="table">
+        <tr>
+            <th>#id</th>
+            <th>Course</th>
+            <th>Type</th>
+            <th>Duration</th>
+            <th>Fees</th>
+            <th>DOJ</th>
+            <th>action</th>
+        </tr>
+        {% for p in stdcourse %}
+            <tr>
+            <td>{{ p.id  }}</td>
+            <td>{{ p.course_name }}</td>
+            <td>{{p.course_type  }}</td>
+            <td>{{p.course_name.course_duration  }}</td>
+            <td>{{p.course_name.course_fees  }}</td>
+            <td>{{p.data_of_join  }}</td>
+            <td><a href="" class="btn btn-info">Deactivate</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

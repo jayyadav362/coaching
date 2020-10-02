@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5 mb-4">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border border-secondary shadow-sm">
+                    <div class="card-header bg-secondary text-light">
+                        <h2 class="lead">Admission Form</h2>
+                        <h6 class="small">Fill all Required Fields</h6>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'apply' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                            <div class="col-lg-6">
+                                {% for f in form %}
+                                    <div class="form-group">
+                                        {{ f.label_tag }}<span class="text-danger">*</span>
+                                        {{ f }}
+                                        <label for="" class="text-danger">{{ f.errors }}</label>
+                                    </div>
+                                    {% if forloop.counter|divisibleby:6 %}
+                                        </div>
+                                        <div class="col-lg-6">
+                                    {% endif %}
+                                {% endfor %}
+                             <div class="form-group">
+                                    <input type="submit" value="login" class="btn btn-block btn-success">
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+block

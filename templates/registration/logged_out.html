@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+        <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                       <h2> Logged out</h2>
+                        <p class="lead">Thanks for spending some quality time with the CWS portal today.
+</p>
+                        <a href="{% url 'login' %}" class="btn btn-success">Log in again</a>
+                        <a href="{% url 'homepage' %}" class="btn bg-main1 text-white">Go to home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+{% endblock %}

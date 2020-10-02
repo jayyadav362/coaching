@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment View</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container mt-3">
+    <div class="col-lg-12">
+          <table class="table table-bordered">
+                    <tr>
+                        <th>Pay_id</th>
+                        <th>Month</th>
+                        <th>Due</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for x in payment %}
+                        <tr>
+                        <td>{{ x.pay_id }}</td>
+                        <td>{{ x.p_month }}</td>
+                        <td>{{ x.p_due }}</td>
+                        <td>{{ x.p_course }}</td>
+                        <td>
+                           {% if x.p_status == '0' %}
+                               <a href="" class="btn btn-danger btn-sm disabled">Pending</a>
+                           {% elif x.p_status == '2' %}
+                               <a href="" class="btn btn-success btn-sm disabled">Paid</a>
+                           {% else %}
+                               <a href="{% url 'approve_payment' x.pay_id %}" class="btn btn-info btn-sm">Approve</a>
+                               <a href="{% url 'decline_payment' x.pay_id %}" class="btn btn-warning btn-sm">Decline</a>
+                           {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+</body>
+</html>

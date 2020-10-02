@@ -1,0 +1,56 @@
+{% extends 'admin/admin_base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row mb-3">
+                    <div class="col-lg-10">
+                        <h2 class="lead">Manage Student</h2>
+                    </div>
+                    <div class="col-lg-2">
+                        <form action="">
+                            <select class="form-control">
+                                <option>Paid</option>
+                                <option>Due</option>
+                                <option>Pending</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Pay_id</th>
+                        <th>Username</th>
+                        <th>Month</th>
+                        <th>Due</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for x in payment %}
+                        {% for s in student %}
+                        {% if x.user_id == s.user_id %}
+                        <tr>
+                        <td>{{ x.pay_id }}</td>
+                        <td>{{ s.first_name }} {{ s.last_name }} <small>({{ s.father_name }})</small></td>
+                        <td>{{ x.p_month }}</td>
+                        <td>{{ x.p_due }}</td>
+                        <td>{{ x.p_course }}</td>
+                        <td>
+                           {% if x.p_status == '0' %}
+                               <a href="" class="btn btn-danger btn-sm disabled">Pending</a>
+                           {% elif x.p_status == '2' %}
+                               <a href="" class="btn btn-success btn-sm disabled">Paid</a>
+                           {% else %}
+                               <a href="{% url 'approve_payment' x.pay_id %}" class="btn btn-info btn-sm">Approve</a>
+                               <a href="{% url 'decline_payment' x.pay_id %}" class="btn btn-warning btn-sm">Decline</a>
+                           {% endif %}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
